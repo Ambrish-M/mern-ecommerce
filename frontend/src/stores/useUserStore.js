@@ -31,7 +31,7 @@ export const useUserStore = create((set, get) => ({
       set({ user: res.data, loading: false });
       toast.success("Logged successfully");
     } catch (error) {
-      set({ loading: false });
+      set({ loading: false,user: null });
       toast.error(error.response.data.message || "An error occured");
     }
   },
@@ -48,15 +48,17 @@ export const useUserStore = create((set, get) => ({
   },
 
   checkAuth: async () => {
-    set({ checkingAuth: true });
-    try {
-      const response = await axios.get("/auth/profile");
-      set({ user: response.data, checkingAuth: false });
-    } catch (error) {
-      console.log(error.message);
-      set({ checkingAuth: false, user: null });
-    }
-  },
+  set({ checkingAuth: true });
+
+  try {
+    const response = await axios.get("/auth/profile");
+    set({ user: response.data, checkingAuth: false });
+  } catch (error) {
+    set({ user: null, checkingAuth: false }); 
+    console.error("Auth check failed:", error?.response?.data?.message);
+  }
+},
+
   refreshToken: async () => {
     // prevent multiple simultaneous refresh attempts
     if (get().checkingAuth) return;
