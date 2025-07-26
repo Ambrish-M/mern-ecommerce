@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import LoadingSpinner from "./components/LoadingSpinner";
 import AdminPage from "./pages/AdminPage";
 import CategoryPage from "./pages/CategoryPage";
-import CartPage from "./pages/cartPage";
+import CartPage from "./pages/CartPage";
 import PurchaseSuccessPage from "./components/PurchaseSuccessPage ";
 import PurchaseCancelPage from "./components/PurchaseCancelPage";
 import { useCartStore } from "./stores/useCartStore";
