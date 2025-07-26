@@ -20,7 +20,7 @@ export const useUserStore = create((set, get) => ({
       toast.success("User created successfully");
     } catch (error) {
       set({ loading: false });
-      toast.error(error?.response?.data?.message || "An error occured");
+      toast.error(error.response.data.message || "An error occured");
     }
   },
   login: async ({ email, password }) => {
@@ -31,7 +31,8 @@ export const useUserStore = create((set, get) => ({
       set({ user: res.data, loading: false });
       toast.success("Logged successfully");
     } catch (error) {
-      toast.error(error?.response?.data?.message || "An error occured");
+      set({ loading: false });
+      toast.error(error.response.data.message || "An error occured");
     }
   },
   logout: async () => {
@@ -45,16 +46,15 @@ export const useUserStore = create((set, get) => ({
       );
     }
   },
+
   checkAuth: async () => {
     set({ checkingAuth: true });
     try {
       const response = await axios.get("/auth/profile");
       set({ user: response.data, checkingAuth: false });
     } catch (error) {
+      console.log(error.message);
       set({ checkingAuth: false, user: null });
-    }
-     finally {
-      set({ loading: false });
     }
   },
   refreshToken: async () => {
