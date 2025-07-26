@@ -8,9 +8,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-
-  const login = useUserStore((state) => state.login);
-  const loading = useUserStore((state) => state.loading);
+  const { login, loading } = useUserStore();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,20 +92,20 @@ const LoginPage = () => {
                 <>
                   <Loader
                     className="mr-2 h-5 w-5 animate-spin"
-                    aria-hidden="true"
+                    arial-hidden="true"
                   />
                   Loading...
                 </>
               ) : (
                 <>
-                  <LogIn className="mr-2 h-5 w-5" aria-hidden="true" />
+                  <LogIn className="mr-2 h-5 w-5 " aria-hidden="true" />
                   Login
                 </>
               )}
             </button>
           </form>
           <p className="mt-8 text-center text-sm text-gray-900">
-            Create a new account?{" "}
+            Create a new account?{""}
             <Link
               to={"/signup"}
               className="font-bold text-amber-400 hover:text-amber-300"

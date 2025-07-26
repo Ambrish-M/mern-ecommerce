@@ -20,7 +20,7 @@ export const useUserStore = create((set, get) => ({
       toast.success("User created successfully");
     } catch (error) {
       set({ loading: false });
-      toast.error(error.response.data.message || "An error occured");
+      toast.error(error?.response?.data?.message || "An error occured");
     }
   },
   login: async ({ email, password }) => {
@@ -32,7 +32,7 @@ export const useUserStore = create((set, get) => ({
       toast.success("Logged successfully");
     } catch (error) {
       set({ loading: false });
-      toast.error(error.response.data.message || "An error occured");
+      toast.error(error?.response?.data?.message || "An error occured");
     }
   },
   logout: async () => {
